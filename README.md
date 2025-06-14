@@ -2,74 +2,63 @@
 
 A JBang wrapper for the MAPS Messaging server that makes it easy to install and run the server with a single command.
 
-## Quick Start
-
-The fastest way to get started:
-
-```bash
-# Install MAPS Messaging
-jbang app install --fresh --force https://github.com/Maps-Messaging/mapsmessaging-jbang/blob/main/MAPS_Messaging.java
-
-# Start the server
-mapsmessaging
-```
-
 ## Prerequisites
 
 - Java 21 or higher
 - JBang (will be installed automatically if not present)
 
-## Installation Options
+## Installation
 
-### Option 1: Direct JBang Command (Recommended)
+### Option 1: One-Command Installation (Recommended)
 
-This is the simplest way to install MAPS Messaging:
+If you don't have JBang installed or want a fresh installation:
 
+```bash
+curl -Ls https://github.com/Maps-Messaging/mapsmessaging-jbang/raw/main/install.sh | bash
+```
+
+After installation, source your shell configuration:
+```bash
+# For Linux
+source ~/.bashrc
+# For macOS
+source ~/.zshrc
+```
+
+### Option 2: Manual Installation with Existing JBang
+
+If you already have JBang installed:
+
+1. Trust the Maps-Messaging organization:
+```bash
+jbang trust add https://github.com/Maps-Messaging/
+```
+
+2. Install MAPS Messaging:
 ```bash
 jbang app install --fresh --force https://github.com/Maps-Messaging/mapsmessaging-jbang/blob/main/MAPS_Messaging.java
 ```
 
-The `--fresh` flag ensures you get the latest version, and `--force` overwrites any existing installation.
-
-### Option 2: Manual Installation
-
-If you prefer more control over the installation process:
-
-1. Clone this repository:
-```bash
-git clone https://github.com/Maps-Messaging/mapsmessaging-jbang.git
-cd mapsmessaging-jbang
-```
-
-2. Run the installation script:
-```bash
-./install-maps.sh
-```
-
 ## Usage
 
-### Starting the Server
-
-Basic startup:
+Start the server:
 ```bash
 mapsmessaging
 ```
 
-With debug output:
+For debug output:
 ```bash
 mapsmessaging --debug
 ```
 
-### Verifying Installation
+## Project Structure
 
-To verify your installation:
-```bash
-# Check the version
-mapsmessaging --version
+The repository contains:
+- `MAPS_Messaging.java`: The main JBang script that wraps the MAPS Messaging server
+- `install.sh`: Installation script for setting up the environment
+- `README.md`: This documentation file
 
-# Check if the server is running
-mapsmessaging --status
-```
+Other files in the repository are for development and testing purposes only.
 
 ## Features
 
@@ -99,7 +88,7 @@ If you encounter any issues:
 
 3. **Permission denied**: Make the script executable
    ```bash
-   chmod +x install-maps.sh
+   chmod +x install.sh
    ```
 
 ## License
