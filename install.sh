@@ -9,8 +9,10 @@ echo "Current directory: $(pwd)"
 # Detect OS
 if [[ "$OSTYPE" == "darwin"* ]]; then
     OS="macos"
+    SHELL_RC="$HOME/.zshrc"
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     OS="linux"
+    SHELL_RC="$HOME/.bashrc"
 else
     echo "Unsupported OS: $OSTYPE"
     exit 1
@@ -42,8 +44,8 @@ curl -Ls https://sh.jbang.dev | bash -s - app setup
 # Add JBang to PATH
 export PATH="$HOME/.jbang/bin:$PATH"
 if [[ ":$PATH:" != *":$HOME/.jbang/bin:"* ]]; then
-    echo 'export PATH="$HOME/.jbang/bin:$PATH"' >> ~/.bashrc
-    source ~/.bashrc
+    echo 'export PATH="$HOME/.jbang/bin:$PATH"' >> "$SHELL_RC"
+    source "$SHELL_RC"
 fi
 
 # Trust the Maps-Messaging organization
@@ -59,6 +61,12 @@ echo "Creating mapsmessaging command..."
 ln -sf "$HOME/.jbang/bin/MAPS_Messaging" "$HOME/.jbang/bin/mapsmessaging"
 chmod +x "$HOME/.jbang/bin/mapsmessaging"
 
+# Add mapsmessaging to PATH
+if [[ ":$PATH:" != *":$HOME/.jbang/bin:"* ]]; then
+    echo 'export PATH="$HOME/.jbang/bin:$PATH"' >> "$SHELL_RC"
+    source "$SHELL_RC"
+fi
+
 # Verify installation
 echo -e "\n=== Verifying installation ==="
 echo "PATH: $PATH"
@@ -73,4 +81,4 @@ echo -e "\n=== Installation complete ==="
 echo "You can now run MAPS Messaging using: mapsmessaging"
 echo "For debug output, use: mapsmessaging --debug"
 echo -e "\nNote: If the 'mapsmessaging' command is not found, please run:"
-echo "source ~/.bashrc" 
+echo "source $SHELL_RC" 
