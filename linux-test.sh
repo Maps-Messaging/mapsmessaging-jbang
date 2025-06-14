@@ -22,11 +22,12 @@ echo -e "\n=== Installing MAPS Messaging ==="
 # Download and run the installer
 curl -Ls https://github.com/Maps-Messaging/mapsmessaging-jbang/raw/main/install-maps.sh > install-maps.sh
 chmod +x install-maps.sh
-./install-maps.sh
 
-# Source the new environment
+# Run the installer in a new shell to get the environment changes
+bash -c '
+source install-maps.sh
+export PATH="$HOME/.jbang/bin:$PATH"
 if [ -f ~/.jbang/bin/jbang ]; then
-    export PATH="$HOME/.jbang/bin:$PATH"
     source ~/.jbang/bin/jbang
 fi
 
@@ -38,5 +39,6 @@ echo "JBang version:"
 jbang --version
 echo "MAPS Messaging version:"
 mapsmessaging --version
+'
 
 echo -e "\n=== Test complete ===" 
