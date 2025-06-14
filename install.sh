@@ -78,7 +78,10 @@ echo "MAPS Messaging version:"
 mapsmessaging --version || MAPS_Messaging --version
 
 echo -e "\n=== Installation complete ==="
-echo "You can now run MAPS Messaging using: mapsmessaging"
-echo "For debug output, use: mapsmessaging --debug"
+echo "MAPS Messaging has been installed successfully."
+echo -e "\nTo start the server, run:"
+echo "mapsmessaging"
+echo -e "\nFor debug output, use:"
+echo "mapsmessaging --debug"
 echo -e "\nNote: If the 'mapsmessaging' command is not found, please run:"
 echo "source $SHELL_RC" 
