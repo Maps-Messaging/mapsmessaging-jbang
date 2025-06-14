@@ -25,12 +25,14 @@ chmod +x install-maps.sh
 
 # Run the installer in a new shell to get the environment changes
 bash -c '
-source install-maps.sh
+# Install JBang first
+curl -Ls https://sh.jbang.dev | bash -s - app setup
 export PATH="$HOME/.jbang/bin:$PATH"
-if [ -f ~/.jbang/bin/jbang ]; then
-    source ~/.jbang/bin/jbang
-fi
 
+# Now run the installer
+source install-maps.sh
+
+# Verify installation
 echo -e "\n=== Verifying installation ==="
 echo "PATH: $PATH"
 echo "Java version:"
