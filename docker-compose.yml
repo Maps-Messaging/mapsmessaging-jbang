@@ -4,7 +4,9 @@ services:
   mapsmessaging:
     build: .
     ports:
-      - "8080:8080"
+      - "8080:8080"  # HTTP/REST API
+      - "1883:1883"  # MQTT
+      - "5672:5672"  # AMQP
     volumes:
       - maps-data:/app/data
     environment:

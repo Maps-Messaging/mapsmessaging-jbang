@@ -25,8 +25,11 @@ RUN jbang app install --fresh --force https://github.com/Maps-Messaging/mapsmess
 RUN ln -sf /root/.jbang/bin/MAPS_Messaging /root/.jbang/bin/mapsmessaging && \
     chmod +x /root/.jbang/bin/mapsmessaging
 
-# Expose the default MAPS Messaging port
-EXPOSE 8080
+# Expose ports
+# 8080: HTTP/REST API
+# 1883: MQTT
+# 5672: AMQP
+EXPOSE 8080 1883 5672
 
 # Set the entrypoint
 ENTRYPOINT ["mapsmessaging"] 
