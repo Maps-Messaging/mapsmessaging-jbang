@@ -38,7 +38,13 @@ echo -e "\n=== Installing MAPS Messaging ==="
 # Install JBang
 echo "Installing JBang..."
 curl -Ls https://sh.jbang.dev | bash -s - app setup
+
+# Add JBang to PATH
 export PATH="$HOME/.jbang/bin:$PATH"
+if [[ ":$PATH:" != *":$HOME/.jbang/bin:"* ]]; then
+    echo 'export PATH="$HOME/.jbang/bin:$PATH"' >> ~/.bashrc
+    source ~/.bashrc
+fi
 
 # Trust the Maps-Messaging organization
 echo "Trusting Maps-Messaging organization..."
@@ -48,6 +54,11 @@ jbang trust add https://github.com/Maps-Messaging/
 echo "Installing MAPS Messaging..."
 jbang app install --fresh --force https://github.com/Maps-Messaging/mapsmessaging-jbang/blob/main/MAPS_Messaging.java
 
+# Create a symlink for the mapsmessaging command
+echo "Creating mapsmessaging command..."
+ln -sf "$HOME/.jbang/bin/MAPS_Messaging" "$HOME/.jbang/bin/mapsmessaging"
+chmod +x "$HOME/.jbang/bin/mapsmessaging"
+
 # Verify installation
 echo -e "\n=== Verifying installation ==="
 echo "PATH: $PATH"
@@ -56,8 +67,10 @@ java -version
 echo "JBang version:"
 jbang --version
 echo "MAPS Messaging version:"
-mapsmessaging --version
+mapsmessaging --version || MAPS_Messaging --version
 
 echo -e "\n=== Installation complete ==="
 echo "You can now run MAPS Messaging using: mapsmessaging"
-echo "For debug output, use: mapsmessaging --debug" 
+echo "For debug output, use: mapsmessaging --debug"
+echo -e "\nNote: If the 'mapsmessaging' command is not found, please run:"
+echo "source ~/.bashrc" 
