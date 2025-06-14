@@ -1,0 +1,15 @@
+# Build artifacts
+maps-ml-*/
+*.tar.gz
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# JBang cache
+.jbang/ 
