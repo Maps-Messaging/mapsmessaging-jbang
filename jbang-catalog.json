@@ -1,0 +1,13 @@
+{
+  "aliases": {
+    "mapsmessaging": {
+      "script-ref": "MAPS_Messaging.java",
+      "description": "MAPS Messaging Server",
+      "java": "21",
+      "properties": {
+        "version": "ml-3.3.7-SNAPSHOT"
+      }
+    }
+  },
+  "catalog-ref": "https://raw.githubusercontent.com/Maps-Messaging/mapsmessaging_server/main/jbang-catalog.json"
+}
